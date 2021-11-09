@@ -8,5 +8,5 @@ RUN pip3 install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT ["flask"]
-CMD ["run", "--host=0.0.0.0", "--port=80"]
+ENTRYPOINT ["gunicorn"]
+CMD ["--workers=3", "--bind=0.0.0.0:5000", "wsgi:app"]
