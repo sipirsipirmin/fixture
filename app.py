@@ -1,11 +1,11 @@
 from datetime import datetime
-from sys import maxsize, stdout
+from sys import maxsize, stdout, exit
 import requests
 import logging
 from settings import *
 
 
-logger = logging.getLogger()
+logger = logging.getLogger() 
 
 def get_matches():
     logging.info("Getting matches from fixture service")
@@ -59,10 +59,11 @@ if __name__ == '__main__':
     handler = logging.StreamHandler(stdout)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     
-    logger.setLevel(logging.DEBUG)
-    handler.setLevel(logging.DEBUG)
-    handler.setFormatter(formatter)
-    logger.addHandler(handler)
+    # logger.setLevel(logging.DEBUG)
+    # handler.setLevel(logging.DEBUG)
+    # handler.setFormatter(formatter)
+    # logger.addHandler(handler)
 
-    check_incoming_matches()
+    print(check_incoming_matches())
+    
     
