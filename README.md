@@ -24,14 +24,8 @@ pip3 install -r requirements.txt
 ### Flask or Gunicorn
 
 ```
-flask run 
+python3 app.py
 ````
-
-or 
-
-```
-gunicorn wsgi:app
-```
 
 ### Docker
 
