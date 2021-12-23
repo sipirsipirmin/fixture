@@ -21,7 +21,7 @@ def get_delta_hours(match):
         return maxsize
     try:
         delta = datetime.now() - datetime.fromisoformat(match_date)
-        delta_hours = (delta.days * SECONDS_IN_DAY + delta.seconds)/360
+        delta_hours = (delta.days * SECONDS_IN_DAY + delta.seconds)/3600
     except Exception as e:
         logging.exception("An error occured when caculating estimated time to match match id=%s " %match.get("id"))
         delta_hours = maxsize
@@ -44,7 +44,7 @@ def check_incoming_matches():
     result = MATCH_NOT_EXIST
     for match in matches:
         delta_hours = get_delta_hours(match)
-        if delta_hours < HOURS_INTERVAL["feature"] and delta_hours > HOURS_INTERVAL["past"]*-1:
+        if (delta_hours > -1*HOURS_INTERVAL["feature"] and delta_hours < 0) or (delta_hours < HOURS_INTERVAL["past"] and delta_hours > 0):
             home_team_id, away_team_id = get_teams_id_of_match(match)
             
             if home_team_id in BIG_TEAMS or away_team_id in BIG_TEAMS:
@@ -65,5 +65,3 @@ if __name__ == '__main__':
     # logger.addHandler(handler)
 
     print(check_incoming_matches())
-    
-    

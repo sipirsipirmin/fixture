@@ -4,8 +4,8 @@ FIXTURE_URL = environ.get("FIXTURE_URL", "https://apigateway.beinsports.com.tr/a
 
 HOURS_INTERVAL = {
     # script will check matches and past - feature range.(now is 0)
-    "feature": environ.get("HOURS_INTERVAL_FEATURE", 1),
-    "past": environ.get("HOURS_INTERVAL_PAST", 2)
+    "feature": int(environ.get("HOURS_INTERVAL_FEATURE", 1)),
+    "past": int(environ.get("HOURS_INTERVAL_PAST", 2))
 }
 
 # This is return values.
